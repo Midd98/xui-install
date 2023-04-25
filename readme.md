@@ -22,3 +22,30 @@ Add the next:
 ```
 @reboot root /home/xtreamcodes/iptv_xtream_codes/start_services.sh
 ```
+
+## Monitor PID Fix:
+```
+wget "https://raw.githubusercontent.com/Midd98/xui-install/master/fix/pid_monitor.php" -O /tmp/pid_monitor.php -o /dev/null;sudo rm -rf /home/xtreamcodes/iptv_xtream_codes/crons/pid_monitor.php; sudo cp /tmp/pid_monitor.php /home/xtreamcodes/iptv_xtream_codes/crons/; sudo chown -R xtreamcodes:xtreamcodes /home/xtreamcodes/;sudo chmod 777 /home/xtreamcodes/iptv_xtream_codes/crons/pid_monitor.php; rm /tmp/pid_monitor.php;
+```
+
+## Servers Checker Fix:
+```
+wget "https://raw.githubusercontent.com/Midd98/xui-install/master/fix/servers_checker.php" -O /tmp/servers_checker.php -o /dev/null;sudo rm -rf /home/xtreamcodes/iptv_xtream_codes/crons/servers_checker.php; sudo cp /tmp/servers_checker.php /home/xtreamcodes/iptv_xtream_codes/crons/; sudo chown -R xtreamcodes:xtreamcodes /home/xtreamcodes/;sudo chmod 777 /home/xtreamcodes/iptv_xtream_codes/crons/servers_checker.php; rm /tmp/servers_checker.php;
+```
+
+## Error installing LoadBalancer
+
+As root run on the LOAD BALANCE SERVER:
+```apt-get install wget libxslt1-dev libcurl3 libgeoip-dev python -y```
+Now delete (X) the stuck on installing server on the Admin UI and try again.
+
+## Fix 500 Errors on XC v2
+
+As root run:
+```apt-get install e2fsprogs -y && chattr -i /home/xtreamcodes/iptv_xtream_codes/GeoLite2.mmdb ; wget https://archive.org/download/geolite2_201910/GeoLite2.mmdb -O /home/xtreamcodes/iptv_xtream_codes/GeoLite2.mmdb && chown xtreamcodes.xtreamcodes  /home/xtreamcodes/iptv_xtream_codes/GeoLite2.mmdb  && chattr +i /home/xtreamcodes/iptv_xtream_codes/GeoLite2.mmdb && clear && echo "If you see this message, 500 errors are probably fixed"```
+
+## Get Network Interface Name
+
+In the server run as root: 
+```route -n | awk '$1 == "0.0.0.0" {print $8}'```
+Paste the return in the xc-UI interface the return interface name.
