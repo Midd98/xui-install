@@ -10,19 +10,19 @@ $Ed756578679cd59095dfa81f228e8b38 = TMP_DIR . md5(AFFb052ccA396818D81004ff99db49
 BBD9e78Ac32626E138E758E840305A7c($Ed756578679cd59095dfa81f228e8b38);
 $C6d911124d37d84aae02dbbd27390026 = intval(trim(shell_exec('ps aux | grep signal_receiver | grep -v grep | wc -l')));
 if ($C6d911124d37d84aae02dbbd27390026 == 0) {
-    shell_exec(PHP_BIN . ' ' . IPTV_PANEL_DIR . 'tools/signal_receiver.php > /dev/null 2>/dev/null &amp;');
+    shell_exec(PHP_BIN . ' ' . IPTV_PANEL_DIR . 'tools/signal_receiver.php > /dev/null 2>/dev/null &');
 }
 $ad4bdb9efb0d9470d5540d122b892978 = intval(trim(shell_exec('ps aux | grep pipe_reader | grep -v grep | wc -l')));
 if ($ad4bdb9efb0d9470d5540d122b892978 == 0) {
-    shell_exec(PHP_BIN . ' ' . IPTV_PANEL_DIR . 'tools/pipe_reader.php > /dev/null 2>/dev/null &amp;');
+    shell_exec(PHP_BIN . ' ' . IPTV_PANEL_DIR . 'tools/pipe_reader.php > /dev/null 2>/dev/null &');
 }
 $E8f9dea3c6b73e7af883fbd526c728b7 = intval(trim(shell_exec('ps aux | grep panel_monitor | grep -v grep | wc -l')));
 if ($E8f9dea3c6b73e7af883fbd526c728b7 == 0) {
-    shell_exec(PHP_BIN . ' ' . IPTV_PANEL_DIR . 'tools/panel_monitor.php > /dev/null 2>/dev/null &amp;');
+    shell_exec(PHP_BIN . ' ' . IPTV_PANEL_DIR . 'tools/panel_monitor.php > /dev/null 2>/dev/null &');
 }
 $C6788cc6a7dc5e43413102489972862e = intval(trim(shell_exec('ps aux | grep watchdog_data | grep -v grep | wc -l')));
 if ($C6788cc6a7dc5e43413102489972862e == 0) {
-    shell_exec(PHP_BIN . ' ' . IPTV_PANEL_DIR . 'tools/watchdog_data.php > /dev/null 2>/dev/null &amp;');
+    shell_exec(PHP_BIN . ' ' . IPTV_PANEL_DIR . 'tools/watchdog_data.php > /dev/null 2>/dev/null &');
 }
 if (!file_exists(MOVIES_IMAGES)) {
     mkdir(MOVIES_IMAGES);
