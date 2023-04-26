@@ -23,6 +23,12 @@ Add the next:
 @reboot root /home/xtreamcodes/iptv_xtream_codes/start_services.sh
 ```
 
+## EPG Database Fix:
+epg_data overload and tilt panel fix
+```
+wget "https://raw.githubusercontent.com/Midd98/xui-install/master/fix/epg.php" -O /tmp/epg.php -o /dev/null;sudo rm -rf /home/xtreamcodes/iptv_xtream_codes/crons/epg.php; sudo cp /tmp/epg.php /home/xtreamcodes/iptv_xtream_codes/crons/; sudo chown -R xtreamcodes:xtreamcodes /home/xtreamcodes/;sudo chmod 777 /home/xtreamcodes/iptv_xtream_codes/crons/epg.php; rm /tmp/epg.php;
+```
+
 ## Monitor PID Fix:
 ```
 wget "https://raw.githubusercontent.com/Midd98/xui-install/master/fix/pid_monitor.php" -O /tmp/pid_monitor.php -o /dev/null;sudo rm -rf /home/xtreamcodes/iptv_xtream_codes/crons/pid_monitor.php; sudo cp /tmp/pid_monitor.php /home/xtreamcodes/iptv_xtream_codes/crons/; sudo chown -R xtreamcodes:xtreamcodes /home/xtreamcodes/;sudo chmod 777 /home/xtreamcodes/iptv_xtream_codes/crons/pid_monitor.php; rm /tmp/pid_monitor.php;
@@ -42,7 +48,9 @@ Now delete (X) the stuck on installing server on the Admin UI and try again.
 ## Fix 500 Errors on XC v2
 
 As root run:
-```apt-get install e2fsprogs -y && chattr -i /home/xtreamcodes/iptv_xtream_codes/GeoLite2.mmdb ; wget https://archive.org/download/geolite2_201910/GeoLite2.mmdb -O /home/xtreamcodes/iptv_xtream_codes/GeoLite2.mmdb && chown xtreamcodes.xtreamcodes  /home/xtreamcodes/iptv_xtream_codes/GeoLite2.mmdb  && chattr +i /home/xtreamcodes/iptv_xtream_codes/GeoLite2.mmdb && clear && echo "If you see this message, 500 errors are probably fixed"```
+```
+apt-get install e2fsprogs -y && chattr -i /home/xtreamcodes/iptv_xtream_codes/GeoLite2.mmdb ; wget https://archive.org/download/geolite2_201910/GeoLite2.mmdb -O /home/xtreamcodes/iptv_xtream_codes/GeoLite2.mmdb && chown xtreamcodes.xtreamcodes  /home/xtreamcodes/iptv_xtream_codes/GeoLite2.mmdb  && chattr +i /home/xtreamcodes/iptv_xtream_codes/GeoLite2.mmdb && clear && echo "If you see this message, 500 errors are probably fixed"
+```
 
 ## Get Network Interface Name
 
