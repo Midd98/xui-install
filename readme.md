@@ -57,3 +57,19 @@ apt-get install e2fsprogs -y && chattr -i /home/xtreamcodes/iptv_xtream_codes/Ge
 In the server run as root: 
 ```route -n | awk '$1 == "0.0.0.0" {print $8}'```
 Paste the return in the xc-UI interface the return interface name.
+
+
+## How to fix " Failed to update GeoLite2! Please try again" error in the pannel settings :
+
+1. Access ssh and log in as root
+2. Type in : sudo visudo
+3  Modify the existing line : 
+```
+xtreamcodes ALL = (root) NOPASSWD: /sbin/iptables
+```
+   to look like this:  
+```
+xtreamcodes ALL = (root) NOPASSWD: /sbin/iptables,/usr/bin/chattr 
+```
+ and save it 
+4. Go back in the panel and try again to update GeoLite2.

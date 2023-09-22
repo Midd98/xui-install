@@ -30,11 +30,11 @@ def getVersion():
     except: return ""
 
 def printc(rText, rColour=col.OKBLUE, rPadding=0):
-    print "%s â”Œâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â” %s" % (rColour, col.ENDC)
-    for i in range(rPadding): print "%s â”‚                                          â”‚ %s" % (rColour, col.ENDC)
-    print "%s â”‚ %s%s%s â”‚ %s" % (rColour, " "*(20-(len(rText)/2)), rText, " "*(40-(20-(len(rText)/2))-len(rText)), col.ENDC)
-    for i in range(rPadding): print "%s â”‚                                          â”‚ %s" % (rColour, col.ENDC)
-    print "%s â””â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”˜ %s" % (rColour, col.ENDC)
+    print "%s ┌──────────────────────────────────────────┐ %s" % (rColour, col.ENDC)
+    for i in range(rPadding): print "%s │                                          │ %s" % (rColour, col.ENDC)
+    print "%s │ %s%s%s │ %s" % (rColour, " "*(20-(len(rText)/2)), rText, " "*(40-(20-(len(rText)/2))-len(rText)), col.ENDC)
+    for i in range(rPadding): print "%s │                                          │ %s" % (rColour, col.ENDC)
+    print "%s └──────────────────────────────────────────┘ %s" % (rColour, col.ENDC)
     print " "
 
 def prepare(rType="MAIN"):
@@ -147,9 +147,11 @@ def configure():
     os.system("chmod +x /home/xtreamcodes/iptv_xtream_codes/start_services.sh > /dev/null")
     os.system("chattr -i /home/xtreamcodes/iptv_xtream_codes/GeoLite2.mmdb > /dev/null")
     os.system("mount -a")
+    os.system("chmod 0700 /home/xtreamcodes/iptv_xtream_codes/config > /dev/null")
     if not "api.xtream-codes.com" in open("/etc/hosts").read(): os.system('echo "127.0.0.1    api.xtream-codes.com" >> /etc/hosts')
     if not "downloads.xtream-codes.com" in open("/etc/hosts").read(): os.system('echo "127.0.0.1    downloads.xtream-codes.com" >> /etc/hosts')
     if not " xtream-codes.com" in open("/etc/hosts").read(): os.system('echo "127.0.0.1    xtream-codes.com" >> /etc/hosts')
+    if not "@reboot root /home/xtreamcodes/iptv_xtream_codes/start_services.sh" in open("/etc/crontab").read(): os.system('echo "@reboot root /home/xtreamcodes/iptv_xtream_codes/start_services.sh" >> /etc/crontab')
 
 def start(first=True):
     if first: printc("Starting Xtream Codes")
@@ -195,11 +197,10 @@ if __name__ == "__main__":
                     if not mysql(rUsername, rPassword): sys.exit(1)
                 encrypt(rHost, rUsername, rPassword, rDatabase, rServerID, rPort)
                 configure()
-                if rType.upper() == "MAIN": modifyNginx()
                 start()
                 printc("Installation completed!", col.OKGREEN, 2)
-                printc("Admin UI: http://%s:25500" % getIP())
                 if rType.upper() == "MAIN":
+                    modifyNginx() # admin install is not enabled currently
                     printc("Please store your MySQL password!")
                     printc(rPassword)
             else: printc("Installation cancelled", col.FAIL)
